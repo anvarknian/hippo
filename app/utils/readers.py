@@ -1,6 +1,9 @@
 import csv
 import json
 import os
+from models.pharmacies import Pharmacies
+from models.claims import Claims
+from models.reverts import Reverts
 
 
 def read_json(directory_path):
@@ -25,3 +28,17 @@ def read_csv(directory_path):
                 for row in reader:
                     csv_data.append(row)
     return csv_data
+
+def read_pharmacies(path) -> Pharmacies:
+    k = {'pharmacies': read_csv(path)}
+    return Pharmacies(**k)
+
+
+def read_reverts(path) -> Reverts:
+    k = {'reverts': read_json(path)}
+    return Reverts(**k)
+
+
+def read_claims(path) -> Claims:
+    k = {'claims': read_json(path)}
+    return Claims(**k)

@@ -6,8 +6,8 @@ from pydantic import BaseModel
 
 class Claim(BaseModel):
     id: Optional[str]
-    ndc: Optional[int]
-    npi: Optional[int]
+    ndc: Optional[str]
+    npi: Optional[str]
     quantity: Optional[float] = 0
     price: Optional[float]
     timestamp: Optional[datetime]
