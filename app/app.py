@@ -1,10 +1,12 @@
 from collections import defaultdict
 
-from utils.readers import read_claims, read_pharmacies, read_reverts
-from models.pharmacies import Pharmacies
 from models.claims import Claims
+from models.pharmacies import Pharmacies
 from models.reverts import Reverts
+from utils.readers import read_claims, read_pharmacies, read_reverts
+from utils.writers import save_to_json
 
+OUTPUT_PATH = './output'
 
 
 def filter_pharmacy_events(p: Pharmacies, c: Claims):
@@ -50,14 +52,16 @@ def compute_metrics(c: Claims, r: Reverts):
 
     return results
 
+
 def run(claims_path: str, reverts_path: str, pharmacies_path: str):
     print(f"Reading from: {claims_path}, {reverts_path}, {pharmacies_path}")
-    #Read/Validation of data.
+
+    # Read/Validation of data.
     claims = read_claims(claims_path)
     reverts = read_reverts(reverts_path)
     pharmacies = read_pharmacies(pharmacies_path)
 
-    #Compute metrics
-    valid_claims = filter_pharmacy_events(pharmacies,claims)
+    # Compute metrics
+    valid_claims = filter_pharmacy_events(pharmacies, claims)
     metrics = compute_metrics(valid_claims, reverts)
-    print(metrics)
+    save_to_json(f'{OUTPUT_PATH}/metrics.json', metrics)
