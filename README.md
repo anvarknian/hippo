@@ -1,3 +1,14 @@
+## HOW TO RUN:
+**For windows** 
+```commandline
+ python app --claims .\data\claims\ --reverts .\data\reverts\ --pharmacies .\data\pharmacies\
+```
+
+**for Mac/Linux**
+```commandline
+ python -m app --claims ./data/claims/ --reverts ./data/reverts/ --pharmacies ./data/pharmacies/
+```
+
 ## Business Model
 We work to offer the lowest possible prices on generic and branded medications, regardless of whether you have insurance or not. Patients get prescriptions with drug (`ndc`) and its (`quantity`) to be filled by a Pharmacy (`npi`). When the patient arrives at the pharmacy with the prescription, the pharmacist informs the (`price`) and submits a new claim. Sometimes, the consumer does not return to the pharmacy to get the drugs, this will generate a claim revert which should be registered by the pharmacist in order to revert (i.e. invalidate) that claim.
 ### Input
