@@ -1,12 +1,11 @@
 ## HOW TO RUN:
-**For windows** 
-```commandline
- python app --claims .\data\claims\ --reverts .\data\reverts\ --pharmacies .\data\pharmacies\
-```
 
 **for Mac/Linux**
 ```commandline
- python -m app --claims ./data/claims/ --reverts ./data/reverts/ --pharmacies ./data/pharmacies/
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app --claims ./data/claims/ --reverts ./data/reverts/ --pharmacies ./data/pharmacies/
 ```
 
 ## Business Model
