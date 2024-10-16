@@ -110,3 +110,5 @@ def run(claims_path: str, reverts_path: str, pharmacies_path: str):
     most_common_quantities_df = quantity_counts_df.groupBy("ndc") \
         .agg(F.collect_list("quantity").alias("most_prescribed_quantity"))
     most_common_quantities_df.write.mode("overwrite").json(f'{OUTPUT_PATH}/metrics-4.json')
+
+    print("Please check './output' folder for all the compute results")
