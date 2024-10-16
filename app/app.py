@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from spark_proc import create_dataframe
 from models.claims import Claims
 from models.pharmacies import Pharmacies
 from models.reverts import Reverts
@@ -65,3 +66,6 @@ def run(claims_path: str, reverts_path: str, pharmacies_path: str):
     valid_claims = filter_pharmacy_events(pharmacies, claims)
     metrics = compute_metrics(valid_claims, reverts)
     save_to_json(f'{OUTPUT_PATH}/metrics.json', metrics)
+
+    df = create_dataframe(valid_claims.to_json())
+    df.show()
